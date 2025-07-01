@@ -1,24 +1,13 @@
-import { useState } from "react";
-import JoinGame from "./components/JoinGame";
+import { Routes, Route } from "react-router-dom";
 import GameBoard from "./components/GameBoard";
+import JoinGame from "./components/JoinGame";
 
 function App() {
-  const [gameId, setGameId] = useState(null);
-  const [playerId, setPlayerId] = useState(null);
-
   return (
-    <div className="min-h-screen">
-      {!gameId ? (
-        <JoinGame
-          onJoined={(id, pid) => {
-            setGameId(id);
-            setPlayerId(pid);
-          }}
-        />
-      ) : (
-        <GameBoard gameId={gameId} />
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<JoinGame />} />
+      <Route path="/game/:id" element={<GameBoard />} />
+    </Routes>
   );
 }
 
